@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const { redisClient, connectRedis } = require('./redis');
 const urlRoutes = require('./routes/urlRoutes');
 const { getOriginalUrl } = require('./services/urlService');
@@ -8,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(cors()); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
